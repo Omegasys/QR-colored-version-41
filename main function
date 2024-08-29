@@ -1,0 +1,11 @@
+int main() {
+    qr_code_t qr;
+    init_qr_matrix(&qr);
+
+    const uint8_t data[] = "Hello, QR Code!";
+    encode_data_with_colors(&qr, data, sizeof(data) - 1);
+
+    print_qr_matrix(&qr);
+
+    return 0;
+}
