@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+
+#define QR_SIZE 354  // Twice the size of version 40 (177x177)
+
+typedef enum {
+    WHITE,
+    BLACK,
+    RED,
+    BLUE,
+    GREEN,
+    YELLOW
+} color_t;
+
+typedef struct {
+    color_t matrix[QR_SIZE][QR_SIZE];
+} qr_code_t;
+
+void init_qr_matrix(qr_code_t *qr) {
+    for (int i = 0; i < QR_SIZE; i++) {
+        for (int j = 0; j < QR_SIZE; j++) {
+            qr->matrix[i][j] = WHITE;  // Initialize to white
+        }
+    }
+}
