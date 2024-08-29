@@ -1,0 +1,15 @@
+void print_qr_matrix(qr_code_t *qr) {
+    for (int i = 0; i < QR_SIZE; i++) {
+        for (int j = 0; j < QR_SIZE; j++) {
+            switch (qr->matrix[i][j]) {
+                case WHITE:   printf(" "); break;
+                case BLACK:   printf("#"); break;
+                case RED:     printf("R"); break;
+                case GREEN:   printf("G"); break;
+                case BLUE:    printf("B"); break;
+                case YELLOW:  printf("Y"); break;
+            }
+        }
+        printf("\n");
+    }
+}
