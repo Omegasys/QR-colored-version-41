@@ -1,0 +1,29 @@
+void encode_data(qr_code_t *qr, const uint8_t *data, size_t len) {
+    int bit_index = 0;
+
+    for (size_t i = 0; i < len; i++) {
+        uint8_t byte = data[i];
+
+        for (int bit = 0; bit < 8; bit++) {
+            int row = bit_index / QR_SIZE;
+            int col = bit_index % QR_SIZE;
+
+            if (row >= QR_SIZE) {
+                printf("Data too large to fit in QR code!\n");
+                return;
+            }
+
+            // Convert binary data to color
+            switch ((byte >> (7 - bit)) & 0x01) {
+                case 0:
+                    qr->matrix[row][col] = RED;  // Use red for a 0 bit
+                    break;
+                case 1:
+                    qr->matrix[row][col] = BLUE;  // Use blue for a 1 bit
+                    break;
+            }
+
+            bit_index++;
+        }
+    }
+}
