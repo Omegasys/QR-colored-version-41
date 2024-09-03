@@ -42,7 +42,6 @@ void encode_data_with_colors(qr_code_t *qr, const uint8_t *data, size_t len) {
                 case 8:
                     qr->matrix[row][col] = DARK GREY;
                     break;
-                case 9:
             }
 
             bit_index++;
