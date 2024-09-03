@@ -27,6 +27,22 @@ void encode_data_with_colors(qr_code_t *qr, const uint8_t *data, size_t len) {
                 case 3:
                     qr->matrix[row][col] = YELLOW;
                     break;
+                case 4:
+                    qr->matrix[row][col] = PURPLE;
+                    break;
+                case 5:
+                    qr->matrix[row][col] = ORANGE;
+                    break;
+                case 6:
+                    qr->matrix[row][col] = BROWN;
+                    break;
+                case 7:
+                    qr->matrix[row][col] = LIGHT GREY;
+                    break;
+                case 8:
+                    qr->matrix[row][col] = DARK GREY;
+                    break;
+                case 9:
             }
 
             bit_index++;
