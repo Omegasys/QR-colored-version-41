@@ -16,10 +16,31 @@ void encode_data(qr_code_t *qr, const uint8_t *data, size_t len) {
             // Convert binary data to color
             switch ((byte >> (7 - bit)) & 0x01) {
                 case 0:
-                    qr->matrix[row][col] = RED;  // Use red for a 0 bit
+                    qr->matrix[row][col] = RED;
                     break;
                 case 1:
-                    qr->matrix[row][col] = BLUE;  // Use blue for a 1 bit
+                    qr->matrix[row][col] = GREEN;
+                    break;
+                case 2:
+                    qr->matrix[row][col] = BLUE;
+                    break;
+                case 3:
+                    qr->matrix[row][col] = YELLOW;
+                    break;
+                case 4:
+                    qr->matrix[row][col] = PURPLE;
+                    break;
+                case 5:
+                    qr->matrix[row][col] = ORANGE;
+                    break;
+                case 6:
+                    qr->matrix[row][col] = BROWN;
+                    break;
+                case 7:
+                    qr->matrix[row][col] = LIGHT GREY;
+                    break;
+                case 8:
+                    qr->matrix[row][col] = DARK GREY;
                     break;
             }
 
