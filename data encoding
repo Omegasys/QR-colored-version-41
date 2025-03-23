@@ -1,10 +1,19 @@
+#include <stdio.h>
+#include <stdint.h>
+
+#define QR_SIZE 10  // Adjust as needed
+
+typedef struct {
+    int matrix[QR_SIZE][QR_SIZE];
+} qr_code_t;
+
 void encode_data(qr_code_t *qr, const uint8_t *data, size_t len) {
     int bit_index = 0;
 
     for (size_t i = 0; i < len; i++) {
         uint8_t byte = data[i];
 
-        for (int bit = 0; bit < 8; bit++) {
+        for (int bit = 0; bit < 8; bit += 5) { // Use 5 bits per color
             int row = bit_index / QR_SIZE;
             int col = bit_index % QR_SIZE;
 
@@ -13,35 +22,44 @@ void encode_data(qr_code_t *qr, const uint8_t *data, size_t len) {
                 return;
             }
 
-            // Convert binary data to color
-            switch ((byte >> (7 - bit)) & 0x01) {
-                case 0:
-                    qr->matrix[row][col] = RED;
-                    break;
-                case 1:
-                    qr->matrix[row][col] = GREEN;
-                    break;
-                case 2:
-                    qr->matrix[row][col] = BLUE;
-                    break;
-                case 3:
-                    qr->matrix[row][col] = YELLOW;
-                    break;
-                case 4:
-                    qr->matrix[row][col] = PURPLE;
-                    break;
-                case 5:
-                    qr->matrix[row][col] = ORANGE;
-                    break;
-                case 6:
-                    qr->matrix[row][col] = BROWN;
-                    break;
-                case 7:
-                    qr->matrix[row][col] = LIGHT GREY;
-                    break;
-                case 8:
-                    qr->matrix[row][col] = DARK GREY;
-                    break;
+            // Extract 5-bit chunks
+            int color_index = (byte >> (3 - bit)) & 0x1F; // Mask 5 bits
+
+            // Map to 32 colors
+            switch (color_index) {
+                case 0:  qr->matrix[row][col] = WHITE; break;
+                case 1:  qr->matrix[row][col] = BLACK; break;
+                case 2:  qr->matrix[row][col] = RED; break;
+                case 3:  qr->matrix[row][col] = GREEN; break;
+                case 4:  qr->matrix[row][col] = BLUE; break;
+                case 5:  qr->matrix[row][col] = YELLOW; break;
+                case 6:  qr->matrix[row][col] = ORANGE; break;
+                case 7:  qr->matrix[row][col] = PURPLE; break;
+                case 8:  qr->matrix[row][col] = PINK; break;
+                case 9:  qr->matrix[row][col] = BROWN; break;
+                case 10: qr->matrix[row][col] = GRAY; break;
+                case 11: qr->matrix[row][col] = CYAN; break;
+                case 12: qr->matrix[row][col] = MAGENTA; break;
+                case 13: qr->matrix[row][col] = LIME; break;
+                case 14: qr->matrix[row][col] = TEAL; break;
+                case 15: qr->matrix[row][col] = INDIGO; break;
+                case 16: qr->matrix[row][col] = VIOLET; break;
+                case 17: qr->matrix[row][col] = MAROON; break;
+                case 18: qr->matrix[row][col] = NAVY; break;
+                case 19: qr->matrix[row][col] = OLIVE; break;
+                case 20: qr->matrix[row][col] = GOLD; break;
+                case 21: qr->matrix[row][col] = SILVER; break;
+                case 22: qr->matrix[row][col] = BRONZE; break;
+                case 23: qr->matrix[row][col] = CORAL; break;
+                case 24: qr->matrix[row][col] = TURQUOISE; break;
+                case 25: qr->matrix[row][col] = LAVENDER; break;
+                case 26: qr->matrix[row][col] = PEACH; break;
+                case 27: qr->matrix[row][col] = MINT; break;
+                case 28: qr->matrix[row][col] = BEIGE; break;
+                case 29: qr->matrix[row][col] = CRIMSON; break;
+                case 30: qr->matrix[row][col] = CHARTREUSE; break;
+                case 31: qr->matrix[row][col] = PERIWINKLE; break;
+                default: qr->matrix[row][col] = BLACK; break; // Fallback
             }
 
             bit_index++;
