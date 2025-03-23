@@ -2,12 +2,39 @@ void print_qr_matrix(qr_code_t *qr) {
     for (int i = 0; i < QR_SIZE; i++) {
         for (int j = 0; j < QR_SIZE; j++) {
             switch (qr->matrix[i][j]) {
-                case WHITE:   printf(" "); break;
-                case BLACK:   printf("#"); break;
-                case RED:     printf("R"); break;
-                case GREEN:   printf("G"); break;
-                case BLUE:    printf("B"); break;
-                case YELLOW:  printf("Y"); break;
+                case WHITE:     printf(" "); break;
+                case BLACK:     printf("#"); break;
+                case RED:       printf("R"); break;
+                case GREEN:     printf("G"); break;
+                case BLUE:      printf("B"); break;
+                case YELLOW:    printf("Y"); break;
+                case ORANGE:    printf("O"); break;
+                case PURPLE:    printf("P"); break;
+                case PINK:      printf("p"); break;
+                case BROWN:     printf("N"); break;
+                case GRAY:      printf("A"); break;
+                case CYAN:      printf("C"); break;
+                case MAGENTA:   printf("M"); break;
+                case LIME:      printf("L"); break;
+                case TEAL:      printf("T"); break;
+                case INDIGO:    printf("I"); break;
+                case VIOLET:    printf("V"); break;
+                case MAROON:    printf("m"); break;
+                case NAVY:      printf("n"); break;
+                case OLIVE:     printf("v"); break;
+                case GOLD:      printf("g"); break;
+                case SILVER:    printf("s"); break;
+                case BRONZE:    printf("z"); break;
+                case CORAL:     printf("c"); break;
+                case TURQUOISE: printf("q"); break;
+                case LAVENDER:  printf("w"); break;
+                case PEACH:     printf("h"); break;
+                case MINT:      printf("x"); break;
+                case BEIGE:     printf("e"); break;
+                case CRIMSON:   printf("d"); break;
+                case CHARTREUSE:printf("u"); break;
+                case PERIWINKLE:printf("j"); break;
+                default:        printf("?"); break; // Handle unknown colors
             }
         }
         printf("\n");
